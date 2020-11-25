@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <!-- Bootstrap 3-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+    <!-- Dependencias de alpaca -->
+    <link type="text/css" href="./assets/alpaca.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="./assets/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./assets/handlebars.js"></script>
+    <script type="text/javascript" src="./assets/alpaca.min.js"></script>
+    <script type="text/javascript" src="./assets/jquery.cookie.js"></script>
+    
+    <script type="text/javascript" src="formbuilder.js"></script>
+    <link type="text/css" href="formbuilder.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div id="form"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="form2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                schema<br />
+                <textarea class="form-control" rows="10" id="schema"></textarea>
+            </div>
+            <div class="col-md-6">
+                options<br />
+                <textarea class="form-control" rows="10" id="options"></textarea>
+            </div>
+        </div>
+    </div>
+    <br />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var alpacadata = {};
+            var cook = $.cookie('alpacadata');
+            if (typeof (cook) != "undefined" && cook) {
+                alpacadata = JSON.parse(cook);
+                formbuilderConfig.data = alpacadata;
+
+                showForm(alpacadata);
+            }
+
+            $("#form").alpaca(
+                formbuilderConfig
+            );
+        });
+    </script>
+</body>
+
+</html>
